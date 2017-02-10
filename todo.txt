@@ -1,0 +1,14 @@
+Complete the Client-Side
+Add $http functionality to the person.service.js to handle GET, POST, PUT, and DELETE requests.
+
+Add functionality to the person.controller.js to allow for the display of people, creation of people, and deletion of people. Remember you'll need to use the appropriate angular directives in index.html to link the controller and DOM together.
+
+Complete the Server-Side
+Add the PUT request to routes/person.js.
+
+Hard Mode: Update Mongo Fields
+Add the following fields to the specified forms
+
+Add a hometown field to our input form.
+Add a favorite movie field to the input form.
+Make sure these fields are carried through to the Mongoose Schema/Model and the Mongo database. Show these new fields on the DOM.

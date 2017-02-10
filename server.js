@@ -1,10 +1,23 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var path = require('path');
+var mongoose = require('mongoose');
 
 var person = require('./routes/person');
 
 var app = express();
+
+app.use(bodyParser.json());
+
+mongoose.connect('mongodb://localhost:27017/upsilon');
+
+mongoose.connection.on('connected', function(){
+  console.log('Sweet connected to database');
+});
+
+mongoose.connection.on('error', function(){
+  console.log('Bad not connected to database');
+});
 
 app.use(express.static('public'));
 app.use('/person', person);

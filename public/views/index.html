@@ -4,13 +4,18 @@
     <title>Upsilon Intro to Mongoose with Persons Unknown</title>
     <script src="/vendor/angular.min.js"></script>
     <script src="/scripts/client.js"></script>
+    <script src="/scripts/person.controller.js" charset="utf-8"></script>
+    <script src="/scripts/person.service.js" charset="utf-8"></script>
+    <script src="/scripts/person.controller.js"></script>
+    <script src="/scripts/person.service.js"></script>
+
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
     <link rel="stylesheet" href="/vendor/normalize.css" />
     <link rel="stylesheet" href="/vendor/skeleton.css" />
     <link rel="stylesheet" href="/styles/main.css" />
   </head>
-  <body>
-    <main class="container">
+  <body ng-app="personApp">
+    <main class="container" ng-controller="PersonController as ctrl">
       <h1>So People Right</h1>
       <!-- Submit a person -->
       <section id="personSubmission" class="row">
@@ -19,33 +24,36 @@
           <div class="row">
             <div class="three columns">
               <label for="currentPersonFirstName">First Name:</label>
-              <input type="text" id="currentPersonFirstName" name="firstName" />
+              <input ng-model="ctrl.person.firstName" type="text" id="currentPersonFirstName" name="firstName" />
             </div>
 
             <div class="nine columns">
               <label for="currentPersonLastName">Last Name:</label>
-              <input type="text" id="currentPersonLastName" name="lastName" />
-              <button>Submit</button>
+              <input ng-model="ctrl.person.lastName" type="text" id="currentPersonLastName" name="lastName" />
+              <button ng-click="ctrl.addNames()">Submit</button>
             </div>
 
           </div>
+          <p>
+            {{ctrl.person}}
+          </p>
         </form>
       </section>
       <!-- See submitted people -->
       <section id="persons" class="row">
         <h2>Person Listing</h2>
         <div id="personList">
-          <div class="person row">
+          <div class="person row" ng-repeat="person in ctrl.array">
             <div class="three columns">
               <label for="firstName">First Name:</label>
-              <input type="text" id="firstName" name="firstName" />
+              <input ng-model="person.firstName" type="text" id="firstName" name="firstName" />
             </div>
 
             <div class="nine columns">
               <label for="lastName">Last Name:</label>
-              <input type="text" id="lastName" name="lastName" />
-              <button class="update">Update</button>
-              <button class="delete">Delete</button>
+              <input ng-model="person.lastName" type="text" id="lastName" name="lastName" />
+              <button ng-click="ctrl.updateNames(person)" class="update">Update</button>
+              <button ng-click="ctrl.deleteNames(person._id)" class="delete">Delete</button>
             </div>
           </div>
         </div>
