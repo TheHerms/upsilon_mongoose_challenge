@@ -15,8 +15,11 @@
   "author": "antoinette@primeacademy.io",
   "license": "ISC",
   "dependencies": {
+    "awesome": "0.0.7",
     "body-parser": "^1.16.0",
+    "bootstrap": "^3.3.7",
     "express": "^4.14.1",
+    "font-awesome": "^4.7.0",
     "mongoose": "^4.8.1"
   }
 }

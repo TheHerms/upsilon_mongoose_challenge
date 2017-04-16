@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
-  <head>
+
+<head>
     <title>Upsilon Intro to Mongoose with Persons Unknown</title>
     <script src="/vendor/angular.min.js"></script>
     <script src="/scripts/client.js"></script>
@@ -11,53 +12,61 @@
 
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
     <link rel="stylesheet" href="/vendor/normalize.css" />
-    <link rel="stylesheet" href="/vendor/skeleton.css" />
+    <link rel="stylesheet" href="/vendor/bootstrap.css" />
     <link rel="stylesheet" href="/styles/main.css" />
-  </head>
-  <body ng-app="personApp">
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css" />
+
+</head>
+
+<body ng-app="personApp">
     <main class="container" ng-controller="PersonController as ctrl">
-      <h1>So People Right</h1>
-      <!-- Submit a person -->
-      <section id="personSubmission" class="row">
-        <h2>Submit a person</h2>
-        <form id="personForm">
-          <div class="row">
-            <div class="three columns">
-              <label for="currentPersonFirstName">First Name:</label>
-              <input ng-model="ctrl.person.firstName" type="text" id="currentPersonFirstName" name="firstName" />
-            </div>
+        <h1>So People Right</h1>
+        <section id="personSubmission">
+            <h2>Submit a Person</h2>
+            <form id="personForm">
+                <div class="row">
+                    <!-- <div class="editNames"> -->
+                        <label for="currentPersonFirstName">First Name:</label>
+                        <input ng-model="ctrl.person.firstName" type="text" id="currentPersonFirstName" name="firstName" />
 
-            <div class="nine columns">
-              <label for="currentPersonLastName">Last Name:</label>
-              <input ng-model="ctrl.person.lastName" type="text" id="currentPersonLastName" name="lastName" />
-              <button ng-click="ctrl.addNames()">Submit</button>
-            </div>
+                        <label for="currentPersonLastName">Last Name:</label>
+                        <input ng-model="ctrl.person.lastName" type="text" id="currentPersonLastName" name="lastName" />
 
-          </div>
-          <p>
-            {{ctrl.person}}
-          </p>
-        </form>
-      </section>
-      <!-- See submitted people -->
-      <section id="persons" class="row">
-        <h2>Person Listing</h2>
-        <div id="personList">
-          <div class="person row" ng-repeat="person in ctrl.array">
-            <div class="three columns">
-              <label for="firstName">First Name:</label>
-              <input ng-model="person.firstName" type="text" id="firstName" name="firstName" />
-            </div>
+                        <label for="currentPersonHometown">Hometown:</label>
+                        <input ng-model="ctrl.person.hometown" type="text" id="currentPersonHometown" name="hometown" />
 
-            <div class="nine columns">
-              <label for="lastName">Last Name:</label>
-              <input ng-model="person.lastName" type="text" id="lastName" name="lastName" />
-              <button ng-click="ctrl.updateNames(person)" class="update">Update</button>
-              <button ng-click="ctrl.deleteNames(person._id)" class="delete">Delete</button>
+                        <label for="currentPersonMovie">Movie:</label>
+                        <input ng-model="ctrl.person.movie" type="text" id="currentPersonMovie" name="movie" />
+                        <button class="btn btn-submit" ng-click="ctrl.addNames()">Submit</button>
+
+                    <!-- </div> -->
+                </div>
+            </form>
+        </section>
+        <!-- See submitted people -->
+        <section id="persons">
+            <h2>Person Listing<i class="fa fa-address-book" aria-hidden="true"></i></h2>
+            <div id="personList">
+                <div class="row" ng-repeat="person in ctrl.array | orderBy:'firstName'">
+                    <label for="firstName">First Name: </label><i class="fa fa-id-badge"></i>
+                    <input ng-model="person.firstName" type="text" id="firstName" name="firstName" />
+
+                    <label for="lastName">Last Name: </label>
+                    <input ng-model="person.lastName" type="text" id="lastName" name="lastName" />
+
+                    <label for="hometown">Hometown: </label><i class="fa fa-globe"></i>
+                    <input ng-model="person.hometown" type="text" id="hometown" name="hometown" />
+
+                    <label for="movie">Favorite Movie: </label><i class="fa fa-film"></i>
+                    <input ng-model="person.movie" type="text" id="movie" name="movie" />
+
+                    <button class="btn btn-default" ng-click="ctrl.updateNames(person)" class="update">Update</button>
+                    <button class="btn btn-default" ng-click="ctrl.deleteNames(person._id)"><i class="fa fa-trash"></i></button>
+
+                </div>
             </div>
-          </div>
-        </div>
-      </section>
+        </section>
     </main>
-  </body>
+</body>
+
 </html>
